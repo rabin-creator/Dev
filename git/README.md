@@ -90,7 +90,7 @@ Computer Engineering Student | Learning Web Development
 
 ---
 
-⭐ If you find this project useful, consider giving it a star!
+⭐ If you find this project useful, consider giving it a star! 
 
 
-![Project Screenshot](./Screenshot 2026.png)
+![Project Screenshot](./screenshot.png)
