@@ -124,6 +124,7 @@ All theme colors live in `style.css` under `:root`:
 | Firefox (recent) | ✅ Fully supported |
 | Safari (recent) | ✅ Fully supported |
 | Mobile browsers | ⚠️ Functional, layout stacks vertically |
+| Brave (recent)  | ✅ Fully supported |
 
 ---
 
