@@ -137,3 +137,5 @@ This project is provided as‑is for demonstration and educational purposes. You
 ## 🙌 Acknowledgements
 
 Inspired by sci‑fi HUD interfaces and real‑world DevOps dashboards. All data is simulated — no real containers, clusters, or pipelines are affected.
+
+![Project Screenshot](./image.png)
