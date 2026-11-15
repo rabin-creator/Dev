@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DevOps System Monitor & CI/CD Pipeline HUD</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="hud-container">
+    <!-- Header -->
+    <header class="hud-header">
+      <div class="title-group">
+        <span class="badge">INFRA-OPS HUD v2.4</span>
+        <h1>Cluster & Pipeline Control Center</h1>
+      </div>
+      <div class="status-pills">
+        <div class="pill">CLUSTER: <span class="emerald">ONLINE</span></div>
+        <div class="pill">REGION: <span class="cyan">ap-south-1</span></div>
+      </div>
+    </header>
+
+    <!-- Main Grid Workspace -->
+    <main class="workspace">
+      <!-- Left Column: Telemetry & Containers -->
+      <section class="left-col">
+        <!-- Telemetry Gauges -->
+        <div class="card">
+          <h3>SYSTEM TELEMETRY (LIVE)</h3>
+          <div class="metrics-grid">
+            <div class="metric-box">
+              <span class="label">CPU LOAD</span>
+              <span id="metric-cpu" class="value cyan">24.5%</span>
+              <div class="bar-bg"><div id="bar-cpu" class="bar-fill cyan-fill" style="width: 24.5%;"></div></div>
+            </div>
+            <div class="metric-box">
+              <span class="label">RAM USAGE</span>
+              <span id="metric-ram" class="value emerald">6.2 / 16 GB</span>
+              <div class="bar-bg"><div id="bar-ram" class="bar-fill emerald-fill" style="width: 38%;"></div></div>
+            </div>
+            <div class="metric-box">
+              <span class="label">DISK I/O</span>
+              <span id="metric-disk" class="value violet">14.2 MB/s</span>
+              <div class="bar-bg"><div id="bar-disk" class="bar-fill violet-fill" style="width: 28%;"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Docker Fleet -->
+        <div class="card flex-card">
+          <div class="card-header-row">
+            <h3>DOCKER CONTAINER FLEET</h3>
+            <button onclick="spawnContainer()" class="action-btn">+ Spawn</button>
+          </div>
+          <div class="container-table-wrapper">
+            <table class="container-table">
+              <thead>
+                <tr>
+                  <th>CONTAINER ID</th>
+                  <th>IMAGE</th>
+                  <th>STATUS</th>
+                  <th>PORT</th>
+                  <th>ACTION</th>
+                </tr>
+              </thead>
+              <tbody id="container-tbody">
+                <!-- Dynamically injected -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: CI/CD Pipeline & Build Logs -->
+      <section class="right-col">
+        <div class="card flex-card">
+          <div class="card-header-row">
+            <h3>CI/CD PIPELINE RUNNER</h3>
+            <button onclick="triggerPipeline()" id="pipeline-btn" class="action-btn primary">Trigger Pipeline</button>
+          </div>
+          <div class="pipeline-stages">
+            <div id="stage-git" class="stage-node">1. Git Checkout</div>
+            <div class="stage-arrow">→</div>
+            <div id="stage-test" class="stage-node">2. Unit Tests</div>
+            <div class="stage-arrow">→</div>
+            <div id="stage-build" class="stage-node">3. Docker Build</div>
+            <div class="stage-arrow">→</div>
+            <div id="stage-deploy" class="stage-node">4. K8s Deploy</div>
+          </div>
+
+          <h3>DEPLOYMENT LOGS</h3>
+          <div id="build-logs" class="build-logs">
+            <div class="log-line info">[System] Ready for pipeline execution. Click 'Trigger Pipeline' to start build.</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Git Branch & Merge Sandbox</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="hud-container">
+    <!-- Top Header -->
+    <header class="hud-header">
+      <div class="title-group">
+        <span class="badge">GIT DAG ENGINE v1.0</span>
+        <h1>Git Branch & Merge Sandbox</h1>
+      </div>
+      <div class="status-pills">
+        <div class="pill">HEAD: <span id="head-status" class="cyan">main</span></div>
+        <div class="pill">COMMITS: <span id="commit-count" class="emerald">1</span></div>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="workspace">
+      <!-- Visual Commit Graph -->
+      <section class="graph-panel">
+        <div class="panel-label">LIVE COMMIT TREE (CLICK NODE TO CHECKOUT)</div>
+        <div class="svg-wrapper">
+          <svg id="git-graph" width="100%" height="100%"></svg>
+        </div>
+      </section>
+
+      <!-- Inspector & Branches -->
+      <aside class="inspector-panel">
+        <div class="card">
+          <h3>ACTIVE BRANCHES</h3>
+          <ul id="branch-list" class="branch-list"></ul>
+        </div>
+        <div class="card">
+          <h3>SELECTED COMMIT</h3>
+          <div id="commit-details" class="commit-details">
+            <p><span>HASH:</span> <strong id="det-hash">-</strong></p>
+            <p><span>BRANCH:</span> <strong id="det-branch">-</strong></p>
+            <p><span>PARENTS:</span> <strong id="det-parents">-</strong></p>
+            <p><span>MSG:</span> <strong id="det-msg">-</strong></p>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Quick Action Bar + Terminal -->
+    <footer class="terminal-panel">
+      <div class="quick-actions">
+        <button onclick="runQuickCmd('git commit -m &quot;feat: update module&quot;')">+ Commit</button>
+        <button onclick="runQuickCmd('git checkout -b feature')">+ Branch 'feature'</button>
+        <button onclick="runQuickCmd('git checkout main')">Checkout 'main'</button>
+        <button onclick="runQuickCmd('git merge feature')">Merge 'feature'</button>
+        <button onclick="runQuickCmd('git reset --hard HEAD~1')" class="danger">Reset HEAD~1</button>
+        <button onclick="runQuickCmd('git init')" class="danger">Reset Repo</button>
+      </div>
+      <div id="terminal-output" class="terminal-output">
+        <div class="log-info">Initialized empty Git repository with initial commit on <b>main</b>. Type <code>help</code> for commands.</div>
+      </div>
+      <form id="terminal-form" class="terminal-input-row">
+        <span class="prompt">rabin@git-hud:~$</span>
+        <input type="text" id="cmd-input" placeholder="e.g. git checkout -b dev | git commit -m 'fix bug' | git merge dev" autocomplete="off" />
+        <button type="submit">RUN</button>
+      </form>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

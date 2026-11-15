@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pro Expense Tracker</title>
+  <link rel="stylesheet" href="expense-tracker.css">
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Expense Tracker Pro</h1>
+      <p>Track, budget, filter, and export your finances</p>
+    </header>
+
+    <!-- Balance Summary Card -->
+    <section class="balance-card">
+      <h2>Current Balance</h2>
+      <p class="total-amount">Rs. 0</p>
+      
+      <div class="summary-boxes">
+        <div class="box income">
+          <span>Income</span>
+          <p>+ Rs. 0</p>
+        </div>
+        <div class="box expense">
+          <span>Expense</span>
+          <p>- Rs. 0</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Monthly Budget Limit Card -->
+    <section class="budget-card">
+      <div class="budget-header">
+        <h3>Monthly Expense Budget</h3>
+        <button id="set-budget-btn" class="btn-small">Set Limit</button>
+      </div>
+      <div class="budget-info">
+        <span id="budget-spent">Spent: Rs. 0</span>
+        <span id="budget-limit">Limit: Rs. 10,000</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="budget-bar"></div>
+      </div>
+      <p id="budget-warning" class="budget-warning hidden">⚠️ You have exceeded your monthly budget limit!</p>
+    </section>
+
+    <!-- Category Breakdown Chart -->
+    <section class="chart-card">
+      <h3>Spending by Category</h3>
+      <div id="category-bars" class="category-bars">
+        <p class="empty-msg">Add expenses to see category breakdown.</p>
+      </div>
+    </section>
+
+    <!-- Add / Edit Transaction Form -->
+    <section class="form-section">
+      <h3 id="form-heading">Add New Transaction</h3>
+      <form id="transaction-form">
+        <div class="form-group">
+          <label for="title">Description</label>
+          <input type="text" id="title" placeholder="e.g., College Lunch, Bus Fare" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="amount">Amount (Rs.)</label>
+            <input type="number" id="amount" placeholder="e.g., 250" min="1" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="type">Type</label>
+            <select id="type">
+              <option value="expense">Expense (-)</option>
+              <option value="income">Income (+)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="category">Category</label>
+          <select id="category">
+            <option value="Food & Snacks">Food & Snacks</option>
+            <option value="Transport">Transport</option>
+            <option value="Bills & Recharge">Bills & Recharge</option>
+            <option value="Study & Books">Study & Books</option>
+            <option value="Salary / Freelance">Salary / Freelance</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn" id="submit-btn">Add Transaction</button>
+          <button type="button" class="btn btn-cancel hidden" id="cancel-edit-btn">Cancel</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Transaction History & Controls -->
+    <section class="history-section">
+      <div class="history-header">
+        <h3>History</h3>
+        <button id="export-btn" class="btn-small">Export CSV</button>
+      </div>
+
+      <div class="filter-bar">
+        <input type="text" id="search-input" placeholder="Search description...">
+        <select id="filter-type">
+          <option value="all">All</option>
+          <option value="income">Income</option>
+          <option value="expense">Expense</option>
+        </select>
+      </div>
+
+      <ul class="transaction-list"></ul>
+    </section>
+  </div>
+
+  <script src="expense-tracker.js"></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CPU Pipeline & Instruction Fetch Simulator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="hud-container">
+    <!-- Header -->
+    <header class="hud-header">
+      <div class="title-group">
+        <span class="badge">COA HARDWARE SIMULATOR v1.0</span>
+        <h1>5-Stage RISC Pipeline & ALU Control Center</h1>
+      </div>
+      <div class="status-pills">
+        <div class="pill">CLOCK CYCLE: <span id="clock-cycle" class="cyan">0</span></div>
+        <div class="pill">STATUS: <span id="sim-status" class="emerald">IDLE</span></div>
+      </div>
+    </header>
+
+    <!-- Workspace Grid -->
+    <main class="workspace">
+      <!-- Left Column: Pipeline Datapath & Stages -->
+      <section class="left-col">
+        <div class="card flex-card">
+          <div class="card-header-row">
+            <h3>PIPELINE STAGES (IF → ID → EX → MEM → WB)</h3>
+            <div class="controls">
+              <button onclick="stepClock()" class="action-btn primary">Step Clock</button>
+              <button onclick="toggleAutoRun()" id="auto-btn" class="action-btn">Auto Play</button>
+              <button onclick="resetPipeline()" class="action-btn danger">Reset</button>
+            </div>
+          </div>
+          
+          <div class="pipeline-datapath">
+            <div class="stage-box" id="stage-if">
+              <span class="st-title">1. IF (Fetch)</span>
+              <div class="st-content" id="content-if">PC: 0x00</div>
+            </div>
+            <div class="pipeline-connector">→</div>
+            <div class="stage-box" id="stage-id">
+              <span class="st-title">2. ID (Decode)</span>
+              <div class="st-content" id="content-id">-</div>
+            </div>
+            <div class="pipeline-connector">→</div>
+            <div class="stage-box" id="stage-ex">
+              <span class="st-title">3. EX (Execute)</span>
+              <div class="st-content" id="content-ex">-</div>
+            </div>
+            <div class="pipeline-connector">→</div>
+            <div class="stage-box" id="stage-mem">
+              <span class="st-title">4. MEM (Memory)</span>
+              <div class="st-content" id="content-mem">-</div>
+            </div>
+            <div class="pipeline-connector">→</div>
+            <div class="stage-box" id="stage-wb">
+              <span class="st-title">5. WB (Writeback)</span>
+              <div class="st-content" id="content-wb">-</div>
+            </div>
+          </div>
+
+          <h3>INSTRUCTION MEMORY QUEUE</h3>
+          <div class="instruction-list-wrapper">
+            <table class="inst-table">
+              <thead>
+                <tr>
+                  <th>PC</th>
+                  <th>INSTRUCTION</th>
+                  <th>OPERATION</th>
+                  <th>STATE</th>
+                </tr>
+              </thead>
+              <tbody id="instruction-tbody">
+                <!-- Injected dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Registers & ALU Console -->
+      <section class="right-col">
+        <!-- Registers Card -->
+        <div class="card">
+          <h3>REGISTER FILE (R0 - R7)</h3>
+          <div class="reg-grid" id="reg-grid">
+            <!-- Dynamically injected registers -->
+          </div>
+        </div>
+
+        <!-- ALU & Hazard Console -->
+        <div class="card flex-card">
+          <h3>ALU & HAZARD UNIT LOG</h3>
+          <div id="alu-logs" class="alu-logs">
+            <div class="log-line">[System] CPU initialized. PC loaded at 0x00. Click 'Step Clock' to begin simulation.</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
